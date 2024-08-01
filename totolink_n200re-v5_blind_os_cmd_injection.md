@@ -8,12 +8,15 @@ Function `setWanCfg` executes os command `echo` to write hostname into system. A
 
 # Root-cause
 Program `cstecgi.cgi` handles HTTP request from client. Parameter hostName is taken from client’s request
+
 ![image](https://github.com/user-attachments/assets/7abfba6a-db00-4b25-9d0a-d063f184be8a)
 
 Value of parameter hostname is validated by function `Validity_check`. However, this function is vulnerable to **CVE-2023-4746** which attacker can craft a specific payload to bypass validation check.
+
 ![image](https://github.com/user-attachments/assets/7799114c-b18f-4889-a25a-19a420557fbf)
 
 Function `doSystem` executes OS command with crafted payload.
+
 ![image](https://github.com/user-attachments/assets/79e567c7-0d4f-45f9-b1d5-bd1d0a12d593)
 
 # References
